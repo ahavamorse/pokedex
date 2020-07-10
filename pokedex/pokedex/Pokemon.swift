@@ -1,8 +1,8 @@
 //
 //  Pokemon.swift
-//  pokedex
+//  Pokedex
 //
-//  Created by Ahava Morse on 7/9/20.
+//  Created by Ahava Morse on 7/10/20.
 //  Copyright © 2020 Ahava Morse. All rights reserved.
 //
 
