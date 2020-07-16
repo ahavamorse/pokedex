@@ -176,17 +176,20 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sLB-L2-cHE">
-                                <rect key="frame" x="87" y="304" width="240" height="246"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sLB-L2-cHE">
+                                <rect key="frame" x="50" y="219" width="314" height="314"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="sLB-L2-cHE" secondAttribute="height" multiplier="1:1" id="CyT-JK-Di9"/>
+                                </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="Ncs-oI-Dna" firstAttribute="bottom" secondItem="45V-sX-9HT" secondAttribute="bottom" constant="50" id="6q2-fl-kTn"/>
-                            <constraint firstItem="sLB-L2-cHE" firstAttribute="top" secondItem="JiT-S8-kJ9" secondAttribute="bottom" constant="135" id="7Hb-HM-3NB"/>
+                            <constraint firstItem="sLB-L2-cHE" firstAttribute="top" secondItem="JiT-S8-kJ9" secondAttribute="bottom" constant="50" id="7Hb-HM-3NB"/>
                             <constraint firstItem="JiT-S8-kJ9" firstAttribute="centerX" secondItem="r6Z-T8-X1C" secondAttribute="centerX" id="DQ5-PG-szg"/>
                             <constraint firstItem="gHT-fQ-674" firstAttribute="top" secondItem="JRu-Nh-cOv" secondAttribute="bottom" constant="20" id="G6A-wG-gEi"/>
-                            <constraint firstItem="Ncs-oI-Dna" firstAttribute="trailing" secondItem="sLB-L2-cHE" secondAttribute="trailing" constant="87" id="GVu-bg-kkH"/>
+                            <constraint firstItem="Ncs-oI-Dna" firstAttribute="trailing" secondItem="sLB-L2-cHE" secondAttribute="trailing" constant="50" id="GVu-bg-kkH"/>
                             <constraint firstItem="Ncs-oI-Dna" firstAttribute="trailing" secondItem="45V-sX-9HT" secondAttribute="trailing" constant="50" id="Kgg-05-uEb"/>
                             <constraint firstItem="gHT-fQ-674" firstAttribute="leading" secondItem="Ncs-oI-Dna" secondAttribute="leading" constant="50" id="UCg-gO-WJd"/>
                             <constraint firstItem="Ncs-oI-Dna" firstAttribute="trailing" secondItem="JRu-Nh-cOv" secondAttribute="trailing" constant="50" id="Utk-1b-M5O"/>
@@ -195,9 +198,7 @@
                             <constraint firstItem="JRu-Nh-cOv" firstAttribute="leading" secondItem="Ncs-oI-Dna" secondAttribute="leading" constant="50" id="gSw-BS-uPJ"/>
                             <constraint firstItem="45V-sX-9HT" firstAttribute="leading" secondItem="Ncs-oI-Dna" secondAttribute="leading" constant="50" id="gqG-f9-Dgy"/>
                             <constraint firstItem="Ncs-oI-Dna" firstAttribute="trailing" secondItem="gHT-fQ-674" secondAttribute="trailing" constant="50" id="hwd-CG-kP1"/>
-                            <constraint firstItem="sLB-L2-cHE" firstAttribute="leading" secondItem="Ncs-oI-Dna" secondAttribute="leading" constant="87" id="qai-z3-wnf"/>
-                            <constraint firstItem="JRu-Nh-cOv" firstAttribute="top" secondItem="sLB-L2-cHE" secondAttribute="bottom" constant="135" id="tBL-NC-6ab"/>
-                            <constraint firstItem="sLB-L2-cHE" firstAttribute="centerX" secondItem="r6Z-T8-X1C" secondAttribute="centerX" id="uwV-Y5-pT8"/>
+                            <constraint firstItem="sLB-L2-cHE" firstAttribute="leading" secondItem="Ncs-oI-Dna" secondAttribute="leading" constant="50" id="qai-z3-wnf"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Ncs-oI-Dna"/>
                     </view>

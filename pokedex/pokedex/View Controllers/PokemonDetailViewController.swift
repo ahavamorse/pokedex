@@ -26,22 +26,11 @@ class PokemonDetailViewController: UIViewController {
     
     func updateViews() {
         if let pokemon = pokemon {
-            PokemonNameLabel.text = pokemon.name
+            PokemonNameLabel.text = pokemon.name.capitalized
             PokemonIDLabel.text = "ID: \(pokemon.id)"
             PokemonTypesLabel.text = pokemon.typesString()
             PokemonAbilitiesLabel.text = pokemon.abilitiesString()
             PokemonImageView.image = pokemon.spriteImage()
         }
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
