@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PokemonSearchViewController: UIViewController {
+class PokemonSearchViewController: UIViewController, UISearchBarDelegate {
 
     @IBOutlet weak var PokemonSearchBar: UISearchBar!
     @IBOutlet weak var PokemonNameLabel: UILabel!
@@ -16,25 +16,92 @@ class PokemonSearchViewController: UIViewController {
     @IBOutlet weak var PokemonIDLabel: UILabel!
     @IBOutlet weak var PokemonTypesLabel: UILabel!
     @IBOutlet weak var PokemonAbilitiesLabel: UILabel!
+    @IBOutlet weak var savePokemonButton: UIButton!
+    
+    var pokemonController: PokemonController? {
+        didSet {
+            updateViews()
+        }
+    }
+    var pokemon: Pokemon?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        PokemonSearchBar.delegate = self
+        updateViews()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let search = searchBar.text else { return }
+        
+        if let pokemonController = pokemonController {
+            pokemonController.searchPokemon(text: search, completion: setPokemon(pokemon:))
+            updateViews()
+        }
     }
-    */
+    
+    func setPokemon(pokemon: Pokemon?) {
+        print(pokemon)
+        if let pokemon = pokemon {
+            self.pokemon = pokemon
+            print(self.pokemon)
+            updateViews()
+        }
+    }
+    
+//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+//        
+//        guard let search = searchBar.text else { return }
+//        
+//        if let pokemonController = pokemonController {
+//            pokemon = pokemonController.searchPokemon(text: search)
+//            print(pokemon)
+//            updateViews()
+//        }
+//    }
+    
+    
+    func updateViews() {
+        print(pokemon)
+        if let pokemon = pokemon {
+            print(pokemon)
+            DispatchQueue.main.async {
+                self.PokemonNameLabel.text = pokemon.name.capitalized
+                self.PokemonNameLabel.isHidden = false
+                
+                self.PokemonImageView.image = pokemon.spriteImage()
+//                self.PokemonImageView.image?.scale = CGFloat(integerLiteral: 2)
+                self.PokemonImageView.isHidden = false
+                
+                self.PokemonIDLabel.text = "ID: \(pokemon.id)"
+                self.PokemonIDLabel.isHidden = false
+                
+                self.PokemonTypesLabel.text = pokemon.typesString()
+                self.PokemonTypesLabel.isHidden = false
+                
+                self.PokemonAbilitiesLabel.text = pokemon.abilitiesString()
+                self.PokemonAbilitiesLabel.isHidden = false
+                
+                self.savePokemonButton.isHidden = false
+            }
+        } else {
+            self.PokemonNameLabel?.isHidden = true
+            self.PokemonImageView?.isHidden = true
+            self.PokemonIDLabel?.isHidden = true
+            self.PokemonTypesLabel?.isHidden = true
+            self.PokemonAbilitiesLabel?.isHidden = true
+            self.savePokemonButton?.isHidden = true
+        }
+    }
+    
+    
 
     @IBAction func SavePokemon(_ sender: UIButton) {
-        
+        if let pokemonController = pokemonController,
+            let pokemon = pokemon {
+            pokemonController.addPokemon(pokemon: pokemon)
+        }
+        navigationController?.popViewController(animated: true)
     }
 }

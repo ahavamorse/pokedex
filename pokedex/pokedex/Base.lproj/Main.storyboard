@@ -10,7 +10,7 @@
         <!--Pokedex-->
         <scene sceneID="LWa-wX-HhH">
             <objects>
-                <tableViewController title="Pokedex" id="QwX-FK-Wl5" sceneMemberID="viewController">
+                <tableViewController title="Pokedex" id="QwX-FK-Wl5" customClass="PokemonTableViewController" customModule="Pokedex" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="5Tj-tQ-e6p">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -62,18 +62,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="HiV-Wo-19d">
-                                <rect key="frame" x="0.0" y="88" width="414" height="56"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </searchBar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pokemon" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rsm-8w-OnN">
                                 <rect key="frame" x="139" y="184" width="136" height="41"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eet-uA-wfh">
-                                <rect key="frame" x="87" y="312" width="240" height="251"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eet-uA-wfh">
+                                <rect key="frame" x="50" y="275" width="314" height="314"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="eet-uA-wfh" secondAttribute="height" multiplier="1:1" id="F2j-Yv-whg"/>
+                                </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Types: -----, -----, ---" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QVi-vX-rb2">
                                 <rect key="frame" x="50" y="705" width="314" height="26.5"/>
@@ -96,33 +95,37 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ID: --" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BdV-ty-9qJ">
-                                <rect key="frame" x="50" y="651" width="65" height="34"/>
+                                <rect key="frame" x="50" y="651" width="314" height="34"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <searchBar contentMode="redraw" placeholder="Search by name or ID:" translatesAutoresizingMaskIntoConstraints="NO" id="HiV-Wo-19d">
+                                <rect key="frame" x="0.0" y="88" width="414" height="56"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="search"/>
+                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="HiV-Wo-19d" firstAttribute="trailing" secondItem="3Xo-c9-Etr" secondAttribute="trailing" id="1PH-bS-6MW"/>
+                            <constraint firstItem="eet-uA-wfh" firstAttribute="top" secondItem="Rsm-8w-OnN" secondAttribute="bottom" constant="50" id="5Nt-iU-e0u"/>
                             <constraint firstItem="dnw-96-Ew2" firstAttribute="top" secondItem="AsJ-G5-t5f" secondAttribute="bottom" constant="25" id="CAZ-lU-ufd"/>
                             <constraint firstItem="HiV-Wo-19d" firstAttribute="top" secondItem="3Xo-c9-Etr" secondAttribute="top" id="Cpg-h7-O03"/>
                             <constraint firstItem="3Xo-c9-Etr" firstAttribute="trailing" secondItem="AsJ-G5-t5f" secondAttribute="trailing" constant="50" id="D2c-Ex-9Cz"/>
-                            <constraint firstItem="BdV-ty-9qJ" firstAttribute="top" secondItem="eet-uA-wfh" secondAttribute="bottom" constant="88" id="HtM-5Z-B8G"/>
                             <constraint firstItem="AsJ-G5-t5f" firstAttribute="top" secondItem="QVi-vX-rb2" secondAttribute="bottom" constant="20" id="Kig-bs-ipG"/>
-                            <constraint firstItem="3Xo-c9-Etr" firstAttribute="bottom" secondItem="dnw-96-Ew2" secondAttribute="bottom" constant="20" id="N4C-aP-iwN"/>
+                            <constraint firstItem="3Xo-c9-Etr" firstAttribute="bottom" secondItem="dnw-96-Ew2" secondAttribute="bottom" priority="999" constant="20" id="N4C-aP-iwN"/>
                             <constraint firstItem="3Xo-c9-Etr" firstAttribute="trailing" secondItem="QVi-vX-rb2" secondAttribute="trailing" constant="50" id="OBV-8m-b1e"/>
-                            <constraint firstItem="eet-uA-wfh" firstAttribute="top" secondItem="Rsm-8w-OnN" secondAttribute="bottom" constant="87" id="Pyn-fc-38I"/>
                             <constraint firstItem="QVi-vX-rb2" firstAttribute="top" secondItem="BdV-ty-9qJ" secondAttribute="bottom" constant="20" id="Q9t-i5-WTX"/>
                             <constraint firstItem="HiV-Wo-19d" firstAttribute="leading" secondItem="3Xo-c9-Etr" secondAttribute="leading" id="aSe-hw-pfW"/>
                             <constraint firstItem="Rsm-8w-OnN" firstAttribute="top" secondItem="HiV-Wo-19d" secondAttribute="bottom" constant="40" id="ak7-aU-a8N"/>
-                            <constraint firstItem="3Xo-c9-Etr" firstAttribute="trailing" secondItem="eet-uA-wfh" secondAttribute="trailing" constant="87" id="g6M-JT-5VV"/>
+                            <constraint firstItem="3Xo-c9-Etr" firstAttribute="trailing" secondItem="eet-uA-wfh" secondAttribute="trailing" constant="50" id="g6M-JT-5VV"/>
                             <constraint firstItem="BdV-ty-9qJ" firstAttribute="leading" secondItem="3Xo-c9-Etr" secondAttribute="leading" constant="50" id="jer-RL-Ziz"/>
                             <constraint firstItem="Rsm-8w-OnN" firstAttribute="centerX" secondItem="jq2-Sg-X3X" secondAttribute="centerX" id="q4z-xG-bKj"/>
+                            <constraint firstItem="3Xo-c9-Etr" firstAttribute="trailing" secondItem="BdV-ty-9qJ" secondAttribute="trailing" constant="50" id="uBd-bb-Q25"/>
                             <constraint firstItem="AsJ-G5-t5f" firstAttribute="leading" secondItem="3Xo-c9-Etr" secondAttribute="leading" constant="50" id="vcP-aR-49j"/>
                             <constraint firstItem="dnw-96-Ew2" firstAttribute="centerX" secondItem="jq2-Sg-X3X" secondAttribute="centerX" id="wFG-my-ZoM"/>
                             <constraint firstItem="QVi-vX-rb2" firstAttribute="leading" secondItem="3Xo-c9-Etr" secondAttribute="leading" constant="50" id="yQh-z2-vBl"/>
-                            <constraint firstItem="eet-uA-wfh" firstAttribute="leading" secondItem="3Xo-c9-Etr" secondAttribute="leading" constant="87" id="zgh-tp-OyO"/>
+                            <constraint firstItem="eet-uA-wfh" firstAttribute="leading" secondItem="3Xo-c9-Etr" secondAttribute="leading" constant="50" id="zgh-tp-OyO"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="3Xo-c9-Etr"/>
                     </view>
@@ -134,6 +137,7 @@
                         <outlet property="PokemonNameLabel" destination="Rsm-8w-OnN" id="s81-mT-Np6"/>
                         <outlet property="PokemonSearchBar" destination="HiV-Wo-19d" id="d6v-rG-zjh"/>
                         <outlet property="PokemonTypesLabel" destination="QVi-vX-rb2" id="rvU-tZ-0pZ"/>
+                        <outlet property="savePokemonButton" destination="dnw-96-Ew2" id="hwR-uk-fcJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h0k-pe-GWQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -155,7 +159,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ID: --" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JRu-Nh-cOv">
-                                <rect key="frame" x="50" y="685" width="64.5" height="34"/>
+                                <rect key="frame" x="50" y="685" width="314" height="34"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -185,6 +189,7 @@
                             <constraint firstItem="Ncs-oI-Dna" firstAttribute="trailing" secondItem="sLB-L2-cHE" secondAttribute="trailing" constant="87" id="GVu-bg-kkH"/>
                             <constraint firstItem="Ncs-oI-Dna" firstAttribute="trailing" secondItem="45V-sX-9HT" secondAttribute="trailing" constant="50" id="Kgg-05-uEb"/>
                             <constraint firstItem="gHT-fQ-674" firstAttribute="leading" secondItem="Ncs-oI-Dna" secondAttribute="leading" constant="50" id="UCg-gO-WJd"/>
+                            <constraint firstItem="Ncs-oI-Dna" firstAttribute="trailing" secondItem="JRu-Nh-cOv" secondAttribute="trailing" constant="50" id="Utk-1b-M5O"/>
                             <constraint firstItem="45V-sX-9HT" firstAttribute="top" secondItem="gHT-fQ-674" secondAttribute="bottom" constant="20" id="bh1-d2-JfB"/>
                             <constraint firstItem="JiT-S8-kJ9" firstAttribute="top" secondItem="Ncs-oI-Dna" secondAttribute="top" constant="40" id="dIQ-gy-6dm"/>
                             <constraint firstItem="JRu-Nh-cOv" firstAttribute="leading" secondItem="Ncs-oI-Dna" secondAttribute="leading" constant="50" id="gSw-BS-uPJ"/>

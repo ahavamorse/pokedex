@@ -7,14 +7,16 @@
 //
 
 import Foundation
+import UIKit
 
-struct Pokemon: Codable {
+struct Pokemon: Decodable {
     
     enum CodingKeys: String, CodingKey {
         case abilities
         case id
         case name
         case types
+        case sprites
         
         enum AbilityKeys: String, CodingKey {
             case ability
@@ -31,25 +33,31 @@ struct Pokemon: Codable {
                 case name
             }
         }
+        
+        enum SpritesKeys: String, CodingKey {
+            case front_default
+        }
     }
     
     var name: String
-    var id: String
+    var id: Int
     var abilities: [String]
     var types: [String]
+    var spriteImageURL: URL
     
-    init(name: String, id: String, abilities: [String], types: [String]) {
+    init(name: String, id: Int, abilities: [String], types: [String], url: URL) {
         self.name = name
         self.id = id
         self.abilities = abilities
         self.types = types
+        self.spriteImageURL = url
     }
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
         self.name = try container.decode(String.self, forKey: .name)
-        self.id = try container.decode(String.self, forKey: .id)
+        self.id = try container.decode(Int.self, forKey: .id)
         
         var abilitiesContainer = try container.nestedUnkeyedContainer(forKey: .abilities)
         var abilities: [String] = []
@@ -78,5 +86,43 @@ struct Pokemon: Codable {
         }
         
         self.types = types
+        
+        let spritesContainer = try container.nestedContainer(keyedBy: CodingKeys.SpritesKeys.self, forKey: .sprites)
+        let urlString = try spritesContainer.decode(String.self, forKey: .front_default)
+        
+        self.spriteImageURL = URL(string: urlString)!
+    }
+    
+    func typesString() -> String {
+        var string = "Types: \(types[0])"
+        
+        if types.count >= 2 {
+            
+            for i in 1...(types.count - 1) {
+                string += ", \(types[i])"
+            }
+        }
+        return string.capitalized
+    }
+    
+    func abilitiesString() -> String {
+        var string = "Abilities: \(abilities[0])"
+        
+        if abilities.count >= 2 {
+            
+            for i in 1...(abilities.count - 1) {
+                string += ", \(abilities[i])"
+            }
+        }
+        return string.capitalized
+    }
+    
+    func spriteImage() -> UIImage? {
+        if let data = try? Data(contentsOf: spriteImageURL) {
+            if let image = UIImage(data: data) {
+                return image
+            }
+        }
+        return nil
     }
 }
