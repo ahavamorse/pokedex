@@ -52,7 +52,6 @@ class PokemonController {
             let decoder = JSONDecoder()
             do {
                 let pokemon = try decoder.decode(Pokemon.self, from: data)
-                print(pokemon)
                 completion(pokemon)
             } catch {
                 NSLog("Error decoding pokemon objects: \(error)")
@@ -60,8 +59,5 @@ class PokemonController {
                 return
             }
         }.resume()
-//        print("return Pokemon:")
-//        print(returnPokemon)
-//        return returnPokemon
     }
 }

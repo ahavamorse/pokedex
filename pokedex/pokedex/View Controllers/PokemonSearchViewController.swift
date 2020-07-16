@@ -42,30 +42,14 @@ class PokemonSearchViewController: UIViewController, UISearchBarDelegate {
     }
     
     func setPokemon(pokemon: Pokemon?) {
-        print(pokemon)
         if let pokemon = pokemon {
             self.pokemon = pokemon
-            print(self.pokemon)
             updateViews()
         }
     }
     
-//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-//        
-//        guard let search = searchBar.text else { return }
-//        
-//        if let pokemonController = pokemonController {
-//            pokemon = pokemonController.searchPokemon(text: search)
-//            print(pokemon)
-//            updateViews()
-//        }
-//    }
-    
-    
     func updateViews() {
-        print(pokemon)
         if let pokemon = pokemon {
-            print(pokemon)
             DispatchQueue.main.async {
                 self.PokemonNameLabel.text = pokemon.name.capitalized
                 self.PokemonNameLabel.isHidden = false
