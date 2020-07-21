@@ -13,12 +13,23 @@ class PokemonController {
     var savedPokemon: [Pokemon] = []
     var baseURL = URL(string: "https://pokeapi.co/api/v2/pokemon/")!
     
+    var savedPokemonURL: URL? {
+        
+        let fileManager = FileManager.default
+        let documentsDir = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first
+        let savedPokemonURL = documentsDir?.appendingPathComponent("SavedPokemonList.plist")
+        
+        return savedPokemonURL
+    }
+    
     func addPokemon(pokemon: Pokemon) {
         savedPokemon.append(pokemon)
+        saveToPersistentStore()
     }
     
     func removePokemon(atIndex index: Int) {
         savedPokemon.remove(at: index)
+        saveToPersistentStore()
     }
     
     func searchPokemon(text: String, completion: @escaping (Pokemon?) -> ()) {
@@ -60,4 +71,33 @@ class PokemonController {
             }
         }.resume()
     }
+    
+    func saveToPersistentStore() {
+            do {
+                
+                let encoder = PropertyListEncoder()
+                let pokemonData = try encoder.encode(savedPokemon)
+                guard let savedPokemonURL = savedPokemonURL else { return }
+                try pokemonData.write(to: savedPokemonURL)
+                
+                print("saved")
+            } catch {
+                print("Couldn't save list: \(error)")
+            }
+        }
+        
+        func loadFromPersistentStore() {
+            do {
+                guard let savedPokemonURL = savedPokemonURL else { return }
+                
+                let pokemonPlist = try Data(contentsOf: savedPokemonURL)
+                let decoder = PropertyListDecoder()
+                let decodedPokemon = try decoder.decode([Pokemon].self, from: pokemonPlist)
+                self.savedPokemon = decodedPokemon
+                
+                print("recovered")
+            } catch {
+                print("Couldn't load pokemon: \(error)")
+            }
+        }
 }

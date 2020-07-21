@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-struct Pokemon: Decodable {
+struct Pokemon: Codable {
     
     enum CodingKeys: String, CodingKey {
         case abilities
@@ -91,6 +91,39 @@ struct Pokemon: Decodable {
         let urlString = try spritesContainer.decode(String.self, forKey: .front_default)
         
         self.spriteImageURL = URL(string: urlString)!
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        
+        try container.encode(name, forKey: .name)
+        try container.encode(id, forKey: .id)
+        
+        var abilitiesContainer = container.nestedUnkeyedContainer(forKey: .abilities)
+        
+        for ability in abilities {
+            var abilityContainer = abilitiesContainer.nestedContainer(keyedBy: CodingKeys.AbilityKeys.self)
+            
+            var abilityNameContainer = abilityContainer.nestedContainer(keyedBy: CodingKeys.AbilityKeys.AbilityNameKeys.self, forKey: .ability)
+            
+            try abilityNameContainer.encode(ability, forKey: .name)
+        }
+            
+        var typesContainer = container.nestedUnkeyedContainer(forKey: .types)
+        
+        for type in types {
+            var typeContainer = typesContainer.nestedContainer(keyedBy: CodingKeys.TypeKeys.self)
+            
+            var typeNameContainer = typeContainer.nestedContainer(keyedBy: CodingKeys.TypeKeys.TypeNameKeys.self, forKey: .type)
+            
+            try typeNameContainer.encode(type, forKey: .name)
+        }
+        
+        var spritesContainer = container.nestedContainer(keyedBy: CodingKeys.SpritesKeys.self, forKey: .sprites)
+        
+        let spriteImageString = "\(spriteImageURL)"
+        
+        try spritesContainer.encode(spriteImageString, forKey: .front_default)
     }
     
     func typesString() -> String {

@@ -14,7 +14,9 @@ class PokemonTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        }
+        
+        pokemonController.loadFromPersistentStore()
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         tableView.reloadData()
