@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EB214D1E24C76FF800817626 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB214D1D24C76FF800817626 /* SettingsViewController.swift */; };
 		EB42187624B8CEA7002293C6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB42187524B8CEA7002293C6 /* AppDelegate.swift */; };
 		EB42187824B8CEA7002293C6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB42187724B8CEA7002293C6 /* SceneDelegate.swift */; };
 		EB42187D24B8CEA7002293C6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB42187B24B8CEA7002293C6 /* Main.storyboard */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EB214D1D24C76FF800817626 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsViewController.swift; path = "pokedex/View Controllers/SettingsViewController.swift"; sourceTree = SOURCE_ROOT; };
 		EB42187224B8CEA7002293C6 /* Pokedex.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pokedex.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB42187524B8CEA7002293C6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EB42187724B8CEA7002293C6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 				EB42189024B8D492002293C6 /* PokemonTableViewController.swift */,
 				EB42189224B8D69F002293C6 /* PokemonDetailViewController.swift */,
 				EB42189424B8D7BE002293C6 /* PokemonSearchViewController.swift */,
+				EB214D1D24C76FF800817626 /* SettingsViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -181,6 +184,7 @@
 				EB42187824B8CEA7002293C6 /* SceneDelegate.swift in Sources */,
 				EB42188C24B8CED9002293C6 /* PokemonController.swift in Sources */,
 				EB42189324B8D69F002293C6 /* PokemonDetailViewController.swift in Sources */,
+				EB214D1E24C76FF800817626 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

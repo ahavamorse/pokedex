@@ -11,6 +11,45 @@ import Foundation
 class PokemonController {
     
     var savedPokemon: [Pokemon] = []
+    
+    var sortMethod: SortMethod = .id
+    var sortedPokemon: [Pokemon] {
+        get {
+            var unsortedList = savedPokemon
+            var sortedList: [Pokemon] = []
+            
+            if sortMethod == .id {
+                while unsortedList.count > 0 {
+                    var lowestId = unsortedList[0].id
+                    var lowestIdIndex = 0
+                    
+                    for i in 0...unsortedList.count - 1 {
+                        if unsortedList[i].id < lowestId {
+                            lowestId = unsortedList[i].id
+                            lowestIdIndex = i
+                        }
+                    }
+                    sortedList.append(unsortedList[lowestIdIndex])
+                    unsortedList.remove(at: lowestIdIndex)
+                }
+            } else {
+                while unsortedList.count > 0 {
+                    var nextName = unsortedList[0].name
+                    var nextNameIndex = 0
+                    
+                    for i in 0...unsortedList.count - 1 {
+                        if unsortedList[i].name < nextName {
+                            nextName = unsortedList[i].name
+                            nextNameIndex = i
+                        }
+                    }
+                    sortedList.append(unsortedList[nextNameIndex])
+                    unsortedList.remove(at: nextNameIndex)
+                }
+            }
+            return sortedList
+        }
+    }
     var baseURL = URL(string: "https://pokeapi.co/api/v2/pokemon/")!
     
     var savedPokemonURL: URL? {
@@ -20,6 +59,11 @@ class PokemonController {
         let savedPokemonURL = documentsDir?.appendingPathComponent("SavedPokemonList.plist")
         
         return savedPokemonURL
+    }
+    
+    enum SortMethod {
+        case id
+        case name
     }
     
     func addPokemon(pokemon: Pokemon) {
@@ -34,8 +78,6 @@ class PokemonController {
     
     func searchPokemon(text: String, completion: @escaping (Pokemon?) -> ()) {
         let getPokemonUrl = baseURL.appendingPathComponent("\(text.lowercased())")
-        
-        var returnPokemon: Pokemon?
         
         var request = URLRequest(url: getPokemonUrl)
         request.httpMethod = "GET"

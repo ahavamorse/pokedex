@@ -43,6 +43,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Pokedex" largeTitleDisplayMode="always" id="Y65-lK-Ntg">
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="gear" catalog="system" id="VbI-he-Gmh">
+                            <connections>
+                                <segue destination="21H-ez-oGu" kind="show" id="Fxm-0O-HMu"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Item" image="magnifyingglass" catalog="system" id="I1s-5v-g68">
                             <connections>
                                 <segue destination="2X2-eO-enY" kind="show" id="iqW-bA-yCu"/>
@@ -144,6 +149,63 @@
             </objects>
             <point key="canvasLocation" x="1802.8985507246377" y="-338.16964285714283"/>
         </scene>
+        <!--Sorting Settings-->
+        <scene sceneID="7hk-ft-D1l">
+            <objects>
+                <viewController title="Sorting Settings" id="21H-ez-oGu" customClass="SettingsViewController" customModule="Pokedex" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2Gj-vz-TXT">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="zrT-c7-kZb">
+                                <rect key="frame" x="217.5" y="138" width="146.5" height="31"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NOi-tV-Zxr">
+                                        <rect key="frame" x="0.0" y="0.0" width="56.5" height="31"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nUy-7L-b9e">
+                                        <rect key="frame" x="66.5" y="0.0" width="51" height="31"/>
+                                        <connections>
+                                            <action selector="switchSortingMethod:" destination="21H-ez-oGu" eventType="valueChanged" id="laF-g0-Qov"/>
+                                        </connections>
+                                    </switch>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IPl-AG-7hL">
+                                        <rect key="frame" x="125.5" y="0.0" width="21" height="31"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sort by: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iL2-by-ijW">
+                                <rect key="frame" x="50" y="138" width="79" height="26.5"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="iL2-by-ijW" firstAttribute="top" secondItem="Zbm-cd-636" secondAttribute="top" constant="50" id="5Bm-ln-YYA"/>
+                            <constraint firstItem="zrT-c7-kZb" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="iL2-by-ijW" secondAttribute="trailing" constant="8" id="8uB-r4-dOp"/>
+                            <constraint firstItem="iL2-by-ijW" firstAttribute="leading" secondItem="Zbm-cd-636" secondAttribute="leading" constant="50" id="Luu-GB-Ngx"/>
+                            <constraint firstItem="Zbm-cd-636" firstAttribute="trailing" secondItem="zrT-c7-kZb" secondAttribute="trailing" constant="50" id="TrN-FD-stX"/>
+                            <constraint firstItem="zrT-c7-kZb" firstAttribute="top" secondItem="Zbm-cd-636" secondAttribute="top" constant="50" id="tIA-g5-vks"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Zbm-cd-636"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Settings" largeTitleDisplayMode="always" id="rZo-Ud-Zzn"/>
+                    <connections>
+                        <outlet property="sortingMethodSwitch" destination="nUy-7L-b9e" id="fZJ-Dt-WHM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IOG-Dt-1Ow" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1002.8985507246377" y="626.78571428571422"/>
+        </scene>
         <!--Pokemon-->
         <scene sceneID="V5F-qy-oBv">
             <objects>
@@ -231,10 +293,11 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2ua-i3-de6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="92.753623188405811" y="-35.491071428571423"/>
+            <point key="canvasLocation" x="-103" y="144"/>
         </scene>
     </scenes>
     <resources>
+        <image name="gear" catalog="system" width="64" height="58"/>
         <image name="magnifyingglass" catalog="system" width="64" height="56"/>
     </resources>
 </document>
