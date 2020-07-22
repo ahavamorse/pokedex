@@ -14,7 +14,9 @@ class PokemonTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        }
+        
+        pokemonController.loadFromPersistentStore()
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         tableView.reloadData()
@@ -23,13 +25,13 @@ class PokemonTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return pokemonController.savedPokemon.count
+        return pokemonController.sortedPokemon.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PokemonCell", for: indexPath)
 
-        cell.textLabel?.text = pokemonController.savedPokemon[indexPath.row].name.capitalized
+        cell.textLabel?.text = pokemonController.sortedPokemon[indexPath.row].name.capitalized
         return cell
     }
 
@@ -56,10 +58,13 @@ class PokemonTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
         if let destination = segue.destination as? PokemonDetailViewController {
             if let index = tableView.indexPathForSelectedRow?.row {
-                destination.pokemon = pokemonController.savedPokemon[index]
+                destination.pokemon = pokemonController.sortedPokemon[index]
             }
             
         } else if let destination = segue.destination as? PokemonSearchViewController {
+            destination.pokemonController = pokemonController
+            
+        } else if let destination = segue.destination as? SettingsViewController {
             destination.pokemonController = pokemonController
         }
     }
